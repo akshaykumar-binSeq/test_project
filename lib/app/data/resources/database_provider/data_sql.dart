@@ -38,22 +38,22 @@ class DatabaseSql {
     return true;
   }
 
-  Future<bool> updateData(String name, String id) async {
-    count = await database
-        .rawUpdate('UPDATE userData SET name = ? WHERE id = ?', [name, id]);
-    print("-----------------------updateData---------------------------");
-    print("id: $id");
-    print("Name: $name");
-    return true;
-  }
+  // Future<bool> updateData(String name, String id) async {
+  //   count = await database
+  //       .rawUpdate('UPDATE userData SET name = ? WHERE id = ?', [name, id]);
+  //   print("-----------------------updateData---------------------------");
+  //   print("id: $id");
+  //   print("Name: $name");
+  //   return true;
+  // }
 
-  Future<bool> deleteData(String id) async {
-    count = await database.rawDelete('DELETE FROM userData WHERE id = ?', [id]);
-    print(id);
-    return true;
-  }
+  // Future<bool> deleteData(String id) async {
+  //   count = await database.rawDelete('DELETE FROM userData WHERE id = ?', [id]);
+  //   print(id);
+  //   return true;
+  // }
 
-  ///to clear cart call this1
+  ///to clear all data call this
   Future<bool> deleteAllData() async {
     print("_______________________delAllData___________________________");
     count = await database.rawDelete('DELETE FROM userData');
