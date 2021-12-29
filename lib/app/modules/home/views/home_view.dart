@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:user_data_from_api/app/data/resources/api_provider/api_provider.dart';
+import 'package:user_data_from_api/app/modules/user_data/views/user_data_view.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -18,18 +19,45 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     // control.getUserDataList();
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('User Details'),
-        centerTitle: true,
-      ),
-      body: _userDataList(context),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          String id = "61cc6fa497069d03e8493092";
-          await ApiProvider().deleteUserData(id);
-        },
-      ),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+          appBar: AppBar(
+            title: const Text('User Details'),
+            centerTitle: true,
+            bottom: const TabBar(
+              indicatorWeight: 4.0,
+              indicatorColor: Colors.black,
+              labelColor: Colors.black,
+              unselectedLabelColor: Colors.blueGrey,
+              labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              tabs: [
+                Tab(
+                  //height: 60,
+                  iconMargin: EdgeInsets.only(top: 10.0, bottom: 8.0),
+                  icon: Icon(
+                    Icons.widgets,
+                    size: 18,
+                  ),
+                  child: Expanded(
+                    child: Text("User API"),
+                  ),
+                ),
+                Tab(
+                  //height: 60,
+                  iconMargin: EdgeInsets.only(top: 10.0, bottom: 8.0),
+                  icon: Icon(
+                    Icons.widgets,
+                    size: 18,
+                  ),
+                  child: Expanded(
+                    child: Text("User Local"),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          body: TabBarView(children: [_userDataList(context), UserDataView()])),
     );
   }
 
@@ -83,7 +111,7 @@ class HomeView extends GetView<HomeController> {
                       );
                     }),
               )
-            : const Center(child: Text("Empty"))),
+            : const Center(child: CircularProgressIndicator())),
       ],
     );
   }

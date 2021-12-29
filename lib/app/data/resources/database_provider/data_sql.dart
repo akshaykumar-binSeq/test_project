@@ -19,7 +19,7 @@ class DatabaseSql {
       version: 1,
       onCreate: (Database db, int version) async {
         await db.execute(
-          "CREATE TABLE userData(id TEXT PRIMARY KEY, name TEXT, email TEXT, mobile TEXT, gender TEXT,)",
+          "CREATE TABLE userData(id TEXT PRIMARY KEY, name TEXT, email TEXT, mobile TEXT, gender TEXT)",
         );
       },
     );
@@ -31,9 +31,7 @@ class DatabaseSql {
 
     await database.transaction((txn) async {
       int insertFlag = await txn.rawInsert(
-          'INSERT INTO userData(id, name, email, mobile, gender,) VALUES("'
-          '${userDetail.id}","${userDetail.name}","${userDetail.email}","${userDetail.mobile}",'
-          '"${userDetail.gender}"');
+          'INSERT INTO userData(id, name, email, mobile, gender) VALUES("${userDetail.id}","${userDetail.name}","${userDetail.email}","${userDetail.mobile}","${userDetail.gender}")');
       print("---------------------insertData--------------------------");
       print('inserted: $insertFlag');
     });

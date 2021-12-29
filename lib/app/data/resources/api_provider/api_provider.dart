@@ -22,7 +22,7 @@ class ApiProvider {
   Future<UserDetails?> createUserData(Map data) async {
     var body = json.encode(data);
     const String apiUrl =
-        "https://crudcrud.com/api/92a17cc329b945cc9dc2341754bf9f63/user_data";
+        "https://crudcrud.com/api/237aee3e1cbc48f2994b25723cd8af0b/user_data";
 
     final response = await http.post(Uri.parse(apiUrl),
         headers: {"Content-Type": "application/json"}, body: body);
@@ -40,7 +40,7 @@ class ApiProvider {
   Future<UserDetails?> updateUserData(Map data, String id) async {
     var body = json.encode(data);
     const String apiUrl =
-        "https://crudcrud.com/api/92a17cc329b945cc9dc2341754bf9f63/user_data";
+        "https://crudcrud.com/api/237aee3e1cbc48f2994b25723cd8af0b/user_data";
 
     final response = await http.put(Uri.parse('$apiUrl/' + '$id'),
         headers: {"Content-Type": "application/json"}, body: body);
@@ -58,7 +58,7 @@ class ApiProvider {
   Future<http.Response> deleteUserData(String id) async {
     final http.Response response = await delete(
       Uri.parse(
-          "https://crudcrud.com/api/92a17cc329b945cc9dc2341754bf9f63/user_data/$id"),
+          "https://crudcrud.com/api/237aee3e1cbc48f2994b25723cd8af0b/user_data/$id"),
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
       },
