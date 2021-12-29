@@ -7,6 +7,8 @@ import 'package:user_data_from_api/app/modules/user_data/controllers/user_data_c
 class HomeController extends GetxController {
   final localControl = Get.put(UserDataController());
 
+  var isLoading = false.obs;
+
   List<UserDetails>? usersData;
   var userDatas = [].obs;
 
@@ -27,7 +29,11 @@ class HomeController extends GetxController {
     await databaseSql.deleteAllData();
     if (userData.isNotEmpty) {
       for (var map in userData) {
-        await databaseSql.insertData(map);
+        try {
+          await databaseSql.insertData(map);
+        } catch (e) {
+          print(e);
+        }
       }
     }
 

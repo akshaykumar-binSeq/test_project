@@ -213,13 +213,20 @@ class HomeView extends GetView<HomeController> {
                                             fontWeight: FontWeight.w600,
                                             fontSize: 14.0,
                                             color: Colors.black)),
-                                    IconButton(
-                                        onPressed: () async {
-                                          await ApiProvider().deleteUserData(
-                                              "${control.usersData![index].id}");
-                                          await control.getUserDataList();
-                                        },
-                                        icon: const Icon(Icons.delete_forever)),
+                                    Obx(
+                                      () => (control.isLoading.value)
+                                          ? const CircularProgressIndicator()
+                                          : IconButton(
+                                              onPressed: () async {
+                                                control.isLoading.value = true;
+                                                await ApiProvider().deleteUserData(
+                                                    "${control.usersData![index].id}");
+                                                await control.getUserDataList();
+                                                control.isLoading.value = false;
+                                              },
+                                              icon: const Icon(
+                                                  Icons.delete_forever)),
+                                    ),
                                   ],
                                 ),
                               )
