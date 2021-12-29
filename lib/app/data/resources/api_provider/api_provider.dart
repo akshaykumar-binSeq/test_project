@@ -5,7 +5,6 @@ import 'package:http/http.dart';
 import 'package:user_data_from_api/app/data/model/data_model.dart';
 
 import 'package:user_data_from_api/app/utils/object_factory.dart';
-import 'package:user_data_from_api/app/utils/urls.dart';
 
 class ApiProvider {
   Future<List<UserDetails>?> getUserDataList() async {
